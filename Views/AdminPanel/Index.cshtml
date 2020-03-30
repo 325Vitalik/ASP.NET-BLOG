@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Post>
+
+<h2 class="text-center mt-4">Admin Panel</h2>
+<div>
+    @foreach (var post in Model)
+    {
+        <div class="card m-3">
+            <div class="card-admin-panel" onclick="location.href='@Url.Action("Post", "Home", new { id = @post.Id })'">
+                <div class="card-header card-header-primary">
+                    <div class="d-flex">
+                        <div class="mr-auto p-2 text-bold"> @post.Title</div>
+                        <div class="p-2 bd-highlight">
+                            <a class="text-secondary" asp-controller="AdminPanel" asp-action="Edit" asp-route-id="@post.Id">
+                                Edit
+                            </a>
+                        </div>
+                        <div class="p-2">
+                            <a class="text-secondary" asp-controller="AdminPanel" asp-action="Remove" asp-route-id="@post.Id">
+                                Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    @Html.Raw(post.Body.Substring(0, post.Body.Length > 256 ? 256 : post.Body.Length))
+                </div>
+            </div>
+        </div>
+    }
+</div>

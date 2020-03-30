@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/static/css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <title>@ViewBag.Title</title>
+</head>
+<body class="bg">
+    <div class="text-center">
+        <div class="d-flex justify-content-center bg-dark mt-3 p-3">
+            <div class="px-4 font-weight-bolder">
+                <a class="text-white" asp-controller="Home" asp-action="Index">Home</a>
+            </div>
+            <div class="px-4 font-weight-bolder">
+                <a class="text-white" asp-controller="User" asp-action="Edit" asp-route-id="">CreatePost</a>
+            </div>
+
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <div class="px-4 font-weight-bolder text-white">
+                    <a class="text-white" asp-controller="AdminPanel" asp-action="Index">AdminPanel</a>
+                </div>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="px-4 font-weight-bolder">
+                    <a class="text-white" asp-controller="Auth" asp-action="Logout">Logout</a>
+                </div>
+            }
+            else
+            {
+                <div class="px-4 font-weight-bolder">
+                    <a class="text-white" asp-controller="Auth" asp-action="Login">Sign In</a>
+                </div>
+                <div class="px-4 font-weight-bolder">
+                    <a class="text-white" asp-controller="Auth" asp-action="Register">Sign Up</a>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="container px-5 mt-3">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", false)
+</body>
+</html>

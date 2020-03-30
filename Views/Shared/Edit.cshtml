@@ -1,0 +1,36 @@
+﻿@model Post
+
+@{
+    string user = User.IsInRole("Admin") ? "AdminPanel" : "User";
+
+}
+
+<link rel="stylesheet" href="~/lib/trumbowyg/dist/ui/trumbowyg.min.css">
+<h2 class="text-center mt-4">Create new post</h2>
+
+<div class="container text-center">
+    <form class="m-3 p-3" asp-controller="@user" asp-action="Edit" method="post">
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="Rating" type="hidden" />
+
+        <div class="input-group-append">
+            <label class="navbar-text mr-4">Title:</label>
+            <input class="form-control" asp-for="Title" />
+        </div>
+
+        <div class="input-group-append mt-3">
+            <label class="mr-3">Body:</label>
+            <textarea id="editor" class="form-control" asp-for="Body"></textarea>
+        </div>
+
+        <button class="m-3 btn btn-secondary w-25" type="submit">Submit</button>
+    </form>
+</div>
+
+@section scripts{
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/lib/trumbowyg/dist/trumbowyg.min.js"></script>
+    <script>
+        $('#editor').trumbowyg();
+    </script>
+}
