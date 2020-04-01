@@ -42,7 +42,7 @@ namespace FirstBlog
                     {
                         UserName = "admin"
                     };
-                    userMgr.CreateAsync(adminUser, "Password").GetAwaiter().GetResult();
+                    userMgr.CreateAsync(adminUser, "Password123").GetAwaiter().GetResult();
 
                     userMgr.AddToRoleAsync(adminUser, adminRole.Name).GetAwaiter().GetResult();
                 }

@@ -1,4 +1,4 @@
-﻿@model LoginViewModel
+﻿@model RegisterViewModel
 
 
 <h2 class="text-center mt-4">Registration page</h2>
@@ -16,6 +16,15 @@
                 <input type="password" class="form-control" placeholder="Enter password" asp-for="Password" />
             </div>
         </div>
-        <button class="m-3 btn btn-secondary" type="submit">Refister</button>
+        <div class="form-group row">
+            <label class="col-4 text-right col-form-label">Confirm Password</label>
+            <div class="col-4">
+                <input type="password" class="form-control" placeholder="Enter password" asp-for="ConfirmPassword" />
+            </div>
+        </div>
+        <div class="d-flex  justify-content-center">
+            <div class="text-left text-danger" asp-validation-summary="All"></div>
+        </div>
+        <button class="m-3 btn btn-secondary" type="submit">Register</button>
     </form>
 </div>

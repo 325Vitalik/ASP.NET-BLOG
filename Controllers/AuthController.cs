@@ -29,9 +29,16 @@ namespace FirstBlog.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel vm)
         {
-            var result = await signInManager.PasswordSignInAsync(vm.UserName,vm.Password,false,false);
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, false);
 
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(vm);
+            }
         }
 
         [HttpGet]
@@ -45,17 +52,24 @@ namespace FirstBlog.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View(new LoginViewModel());
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(LoginViewModel vm)
+        public async Task<IActionResult> Register(RegisterViewModel vm)
         {
-            var user = new IdentityUser(vm.UserName);
-            
-            var result = await userMgr.CreateAsync(user, vm.Password);
-            await userMgr.AddToRoleAsync(user, "user");
-            return RedirectToAction("Index", "Home");
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser(vm.UserName);
+
+                var result = await userMgr.CreateAsync(user, vm.Password);
+                await userMgr.AddToRoleAsync(user, "user");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(vm);
+            }
         }
     }
 }
