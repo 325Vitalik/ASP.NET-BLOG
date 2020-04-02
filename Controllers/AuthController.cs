@@ -6,18 +6,21 @@ using FirstBlog.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using FirstBlog.ViewModels;
+using FirstBlog.Data.Repository;
 
 namespace FirstBlog.Controllers
 {
     public class AuthController : Controller
     {
-        private SignInManager<IdentityUser> signInManager;
-        private UserManager<IdentityUser> userMgr;
+        private SignInManager<User> signInManager;
+        private UserManager<User> userMgr;
+        private IRepository _repo;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userMgr)
+        public AuthController(SignInManager<User> signInManager, UserManager<User> userMgr, IRepository repo)
         {
             this.signInManager = signInManager;
             this.userMgr = userMgr;
+            this._repo = repo;
         }
 
         [HttpGet]
@@ -31,8 +34,8 @@ namespace FirstBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, false);
-
+                //TODO: Написати перевірки
+                var result = await signInManager.PasswordSignInAsync(_repo.GetUser(vm.UserName), vm.Password, false, false);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -60,7 +63,7 @@ namespace FirstBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser(vm.UserName);
+                var user = new User(vm.UserName);
 
                 var result = await userMgr.CreateAsync(user, vm.Password);
                 await userMgr.AddToRoleAsync(user, "user");

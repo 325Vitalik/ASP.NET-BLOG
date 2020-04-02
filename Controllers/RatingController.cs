@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FirstBlog.Data.Repository;
+using FirstBlog.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,27 +24,14 @@ namespace FirstBlog.Controllers
         {  
             if (id != null)
             {
-                bool isLiked = likeCheck((int)id);
-                bool isDesliked = dislikeCheck((int)id);
-                int changeRating;
+                var likeCheck = _repo.GetVote(User.Identity.Name, (int)id) == true;
 
-                if (!isLiked && !isDesliked)
-                {
-                    _repo.Like((int)id, User.Identity.Name);
-                    changeRating = 1;
+                _repo.RemoveVote(User.Identity.Name, (int)id);
+
+                if (!likeCheck) {
+                    vote((int)id, true);
                 }
-                else if(isLiked)
-                {
-                    _repo.DeleteLike((int)id, User.Identity.Name);
-                    changeRating = -1;
-                }
-                else
-                {
-                    _repo.DeleteDislike((int)id, User.Identity.Name);
-                    _repo.Like((int)id, User.Identity.Name);
-                    changeRating = 2;
-                }
-                ratingChanges((int)id, changeRating);
+                _repo.SaveChangesAsync().GetAwaiter().GetResult();
             }
             return RedirectToAction("Index", "Home");
         }
@@ -52,51 +40,27 @@ namespace FirstBlog.Controllers
         {
             if (id != null)
             {
-                bool isLiked = likeCheck((int)id);
-                bool isDesliked = dislikeCheck((int)id);
-                int changeRating;
+                var dislikeCheck = _repo.GetVote(User.Identity.Name, (int)id) == false;
 
-                if (!isLiked && !isDesliked)
+                _repo.RemoveVote(User.Identity.Name, (int)id);
+
+                if (!dislikeCheck)
                 {
-                    _repo.Dislike((int)id, User.Identity.Name);
-                    changeRating = -1;
+                    vote((int)id, false);
                 }
-                else if (isDesliked)
-                {
-                    _repo.DeleteDislike((int)id, User.Identity.Name);
-                    changeRating = 1;
-                }
-                else
-                {
-                    _repo.DeleteLike((int)id, User.Identity.Name);
-                    _repo.Dislike((int)id, User.Identity.Name);
-                    changeRating = -2;
-                }
-                ratingChanges((int)id, changeRating);
+                _repo.SaveChangesAsync().GetAwaiter().GetResult();
             }
             return RedirectToAction("Index", "Home");
         }
 
-        private bool likeCheck(int userId)
+        private void vote(int postId, bool like)
         {
-            if (_repo.GetLike(userId, User.Identity.Name) == null)
-                return false;
-            return true;
-        }
-
-        private bool dislikeCheck(int userId)
-        {
-            if (_repo.GetDislike(userId, User.Identity.Name) == null)
-                return false;
-            return true;
-        }
-
-        private void ratingChanges(int id, int change)
-        {
-            var post = _repo.GetPost(id);
-            post.Rating += change;
-            _repo.UpdatePost(post);
-            _repo.SaveChangesAsync().GetAwaiter().GetResult();
+            _repo.AddVote(new PostLikeDislike()
+            {
+                PostId = postId,
+                UserId = _repo.GetUserId(User.Identity.Name),
+                LikeDislike = like
+            });
         }
     }
 }

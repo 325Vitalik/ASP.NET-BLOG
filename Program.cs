@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FirstBlog.Data;
+using FirstBlog.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +24,7 @@ namespace FirstBlog
                 var scope = host.Services.CreateScope();
 
                 var ctx = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
                 ctx.Database.EnsureCreated();
@@ -38,7 +39,7 @@ namespace FirstBlog
                 }
                 if (!ctx.Users.Any(u => u.UserName == "admin"))
                 {
-                    var adminUser = new IdentityUser
+                    var adminUser = new User
                     {
                         UserName = "admin"
                     };

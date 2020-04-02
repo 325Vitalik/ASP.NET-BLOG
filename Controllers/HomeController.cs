@@ -24,18 +24,10 @@ namespace FirstBlog.Controllers
             var lst = new Dictionary<int, bool?>();
             foreach (var post in posts)
             {
-                if(_repo.GetLike(post.Id, User.Identity.Name) == null && _repo.GetDislike(post.Id, User.Identity.Name) == null)
-                {
-                    lst.Add(post.Id, null);
-                }
-                else if (_repo.GetLike(post.Id, User.Identity.Name) == null)
-                {
-                    lst.Add(post.Id, false);
-                }
-                else
-                {
-                    lst.Add(post.Id, true);
-                }
+                var vote = _repo.GetVote(User.Identity.Name, post.Id);
+                lst.Add(post.Id, vote);
+                var allPostVotes = _repo.GetAllVotesOfPost(post.Id).ToList();
+                post.Rating = allPostVotes.Where(v => v.LikeDislike).Count() - allPostVotes.Where(v => !v.LikeDislike).Count();
             }
             ViewBag.Vote = lst;
             return View(posts);

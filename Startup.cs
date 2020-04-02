@@ -12,6 +12,7 @@ using FirstBlog.Data;
 using Microsoft.EntityFrameworkCore;
 using FirstBlog.Data.Repository;
 using Microsoft.AspNetCore.Identity;
+using FirstBlog.Models;
 
 namespace FirstBlog
 {
@@ -28,7 +29,7 @@ namespace FirstBlog
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_config["DefaultConnection"]));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole>(options =>
                 {
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 8;

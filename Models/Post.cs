@@ -16,5 +16,7 @@ namespace FirstBlog.Models
         public int Rating { get; set; } = 0;
 
         public DateTime WasCreated { get; set; } = DateTime.Now;
+
+        public IList<PostLikeDislike> PostLikes { get; set; }
     }
 }
