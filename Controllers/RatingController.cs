@@ -24,14 +24,7 @@ namespace FirstBlog.Controllers
         {  
             if (id != null)
             {
-                var likeCheck = _repo.GetVote(User.Identity.Name, (int)id) == true;
-
-                _repo.RemoveVote(User.Identity.Name, (int)id);
-
-                if (!likeCheck) {
-                    vote((int)id, true);
-                }
-                _repo.SaveChangesAsync().GetAwaiter().GetResult();
+                changeVote((int)id, true);
             }
             return RedirectToAction("Index", "Home");
         }
@@ -40,17 +33,22 @@ namespace FirstBlog.Controllers
         {
             if (id != null)
             {
-                var dislikeCheck = _repo.GetVote(User.Identity.Name, (int)id) == false;
-
-                _repo.RemoveVote(User.Identity.Name, (int)id);
-
-                if (!dislikeCheck)
-                {
-                    vote((int)id, false);
-                }
-                _repo.SaveChangesAsync().GetAwaiter().GetResult();
+                changeVote((int)id, false);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private void changeVote(int postId, bool like)
+        {
+            var check = _repo.GetVote(User.Identity.Name, postId) == like;
+
+            _repo.RemoveVote(User.Identity.Name, postId);
+
+            if (!check)
+            {
+                vote(postId, like);
+            }
+            _repo.SaveChangesAsync().GetAwaiter().GetResult();
         }
 
         private void vote(int postId, bool like)
