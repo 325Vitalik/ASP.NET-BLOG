@@ -55,7 +55,7 @@ namespace FirstBlog
 
             app.UseStaticFiles();
 
-            app.UseRouting();
+            //app.UseRouting();
 
             app.UseAuthentication();
 

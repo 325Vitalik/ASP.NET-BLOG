@@ -10,6 +10,10 @@
       "provider": "unpkg",
       "library": "trumbowyg@2.21.0",
       "destination": "wwwroot/lib/trumbowyg/"
+    },
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/"
     }
   ]
 }

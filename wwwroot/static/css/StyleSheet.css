@@ -1,0 +1,35 @@
+a:hover {
+  text-decoration: none;
+  color: #2C333E; }
+
+body {
+  background-color: #FFFFFF; }
+
+.card-admin-panel:hover {
+  cursor: pointer; }
+
+a {
+  color: #2C333E; }
+
+.text-bold {
+  font-weight: bold; }
+
+.card-header-primary {
+  background-color: #D6D4CF; }
+
+.bg-dark {
+  background-color: #2C333E; }
+
+.bg {
+  background-color: #FFFFFF; }
+
+.text-left-xs {
+  text-align: left; }
+
+@media (min-width: 768px) {
+  .m-3.btn.btn-secondary {
+    width: 100%; }
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%); } }

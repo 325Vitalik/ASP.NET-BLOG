@@ -1,0 +1,32 @@
+﻿body {
+    background-color: #FFFFFF;
+}
+
+a {
+    color: #2C333E;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #2C333E;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.card-header-primary {
+    background-color: #D6D4CF;
+}
+
+.bg-dark {
+    background-color: #2C333E;
+}
+
+.bg {
+    background-color: #FFFFFF;
+}
+
+.card-admin-panel:hover {
+    cursor: pointer;
+}

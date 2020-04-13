@@ -4,14 +4,61 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    @*<script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>*@
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/static/css/style.css" />
+    @*<link rel="stylesheet" href="~/static/css/style.css" />*@
+    <link rel="stylesheet" href="~/static/css/StyleSheet.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <title>@ViewBag.Title</title>
 </head>
 <body class="bg">
-    <div class="text-center">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mt-3 p-4">
+        <div class="container-fluid d-flex justify-content-end mx-2">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-center">
+                <li class="nav-item px-4 font-weight-bolder align-self-end">
+                    <a class="text-white" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item px-4 font-weight-bolder align-self-end">
+                    <a class="text-white" asp-controller="User" asp-action="Edit" asp-route-id="">Create Post</a>
+                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item px-4 font-weight-bolder align-self-end">
+                        <a class="text-white" asp-controller="AdminPanel" asp-action="Index">Admin Panel</a>
+                    </li>
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item px-4 font-weight-bolder align-self-end">
+                        <a class="text-white" asp-controller="Auth" asp-action="Logout">Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item px-4 font-weight-bolder align-self-end">
+                        <a class="text-white" asp-controller="Auth" asp-action="Login">Sign In</a>
+                    </li>
+                    <li class="nav-item px-4 font-weight-bolder align-self-end">
+                        <a class="text-white" asp-controller="Auth" asp-action="Register">Sign Up</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+
+    @*<div class="text-center">
         <div class="d-flex justify-content-center bg-dark mt-3 p-3">
             <div class="px-4 font-weight-bolder">
                 <a class="text-white" asp-controller="Home" asp-action="Index">Home</a>
@@ -43,7 +90,7 @@
                 </div>
             }
         </div>
-    </div>
+    </div>*@
     <div class="container px-5 mt-3">
         @RenderBody()
     </div>
