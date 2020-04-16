@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Post>
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    var votes = ViewBag.Vote;
+        var votes = ViewBag.Vote;
 }
+
+
 <h2 class="text-center mt-4">All Posts</h2>
 <div>
 
@@ -14,38 +16,24 @@
                     <div class="d-flex">
                         <div class="mr-auto p-2 text-bold"> @post.Title</div>
                         <div class="p-2 bd-highlight text-secondary text-bold">
-                            @if (votes[post.Id] != null)
+                            @if (votes[post.Id] ?? false)
                             {
-                                if (votes[post.Id])
-                                {
-                                    <a asp-controller="Rating" asp-action="RatingUp" asp-route-id="@post.Id">
-                                        <i class="fas fa-angle-double-up mx-2" style="color: mediumseagreen"></i>
-                                    </a>
-                                    @post.Rating
-                                    <a asp-controller="Rating" asp-action="RatingDown" asp-route-id="@post.Id">
-                                        <i class="fas fa-angle-double-down mx-2"></i>
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a asp-controller="Rating" asp-action="RatingUp" asp-route-id="@post.Id">
-                                        <i class="fas fa-angle-double-up mx-2"></i>
-                                    </a>
-                                    @post.Rating
-                                    <a asp-controller="Rating" asp-action="RatingDown" asp-route-id="@post.Id">
-                                        <i class="fas fa-angle-double-down mx-2" style="color: lightcoral"></i>
-                                    </a>
-                                }
+                                <i class="upvoted upvote fas fa-angle-double-up mx-2" data-id="@post.Id"></i>
                             }
                             else
                             {
-                                <a asp-controller="Rating" asp-action="RatingUp" asp-route-id="@post.Id">
-                                    <i class="fas fa-angle-double-up mx-2"></i>
-                                </a>
-                                @post.Rating
-                                <a asp-controller="Rating" asp-action="RatingDown" asp-route-id="@post.Id">
-                                    <i class="fas fa-angle-double-down mx-2"></i>
-                                </a>
+                                <i class="upvote fas fa-angle-double-up mx-2" data-id="@post.Id"></i>
+                            }
+
+                            <span class="ratingOfPost">@post.Rating</span>
+
+                            @if(!(votes[post.Id] ?? true))
+                            {
+                                <i class="downvoted downvote fas fa-angle-double-down mx-2" data-id="@post.Id"></i>
+                            }
+                            else
+                            {
+                                 <i class="downvote fas fa-angle-double-down mx-2" data-id="@post.Id"></i>
                             }
                         </div>
                     </div>
@@ -58,3 +46,72 @@
         </div>
     }
 </div>
+
+<script src="~/jquery/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $('.upvote').on('click',
+
+        function ratingUp(e) {
+            e.stopPropagation();
+            var target = e.target;
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "@Url.Action("RatingUp", "Rating")",
+            data: { id: target.dataset.id },
+            dataType: 'json',
+            success: function (result) {
+                var innerRatingElement = target.parentElement.getElementsByClassName("ratingOfPost")[0];
+                if (target.classList.contains("upvoted")) {
+                    innerRatingElement.innerHTML = +innerRatingElement.innerHTML - 1;
+
+                    target.classList.remove("upvoted");
+                } else if (target.parentElement.lastElementChild.classList.contains("downvoted")) {
+                    innerRatingElement.innerHTML = +innerRatingElement.innerHTML + 2;
+
+                    target.parentElement.lastElementChild.classList.remove("downvoted");
+                    target.classList.add("upvoted");
+                } else {
+                    innerRatingElement.innerHTML = +innerRatingElement.innerHTML + 1;
+
+                    target.classList.add("upvoted");
+                }
+            }
+        });
+        }
+    )
+
+    $('.downvote').on('click',
+
+        function ratingUp(e) {
+            e.stopPropagation();
+            var target = e.target;
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "@Url.Action("RatingDown", "Rating")",
+                data: { id: target.dataset.id},
+                dataType: 'json',
+                success: function (result) {
+                    var innerRatingElement = target.parentElement.getElementsByClassName("ratingOfPost")[0];
+                    if (target.classList.contains("downvoted")) {
+                        innerRatingElement.innerHTML = +innerRatingElement.innerHTML + 1;
+
+                        target.classList.remove("downvoted");
+                    } else if (target.parentElement.firstElementChild.classList.contains("upvoted")) {
+                        innerRatingElement.innerHTML = +innerRatingElement.innerHTML - 2;
+
+                        target.parentElement.firstElementChild.classList.remove("upvoted")
+                        target.classList.add("downvoted");
+                    } else {
+                        innerRatingElement.innerHTML = +innerRatingElement.innerHTML - 1;
+
+                        target.classList.add("downvoted");
+                    }
+                }
+            });
+        }
+    )
+</script>

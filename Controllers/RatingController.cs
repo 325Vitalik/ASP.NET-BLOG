@@ -15,14 +15,14 @@ namespace FirstBlog.Controllers
             _repo = repo;
         }
 
+        
         public IActionResult RatingUp(int? id)
         {
             if (id != null)
             {
                 changeVote((int)id, true);
             }
-            //return StatusCode(401);
-            return RedirectToAction("Index", "Home");
+            return Json( new { success = true });
         }
 
         public IActionResult RatingDown(int? id)
@@ -31,7 +31,7 @@ namespace FirstBlog.Controllers
             {
                 changeVote((int)id, false);
             }
-            return RedirectToAction("Index", "Home");
+            return Json(new { success = true});
         }
 
         private void changeVote(int postId, bool like)

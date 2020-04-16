@@ -26,6 +26,12 @@ a {
 .text-left-xs {
   text-align: left; }
 
+.upvoted {
+  color: mediumseagreen !important; }
+
+.downvoted {
+  color: lightcoral !important; }
+
 @media (min-width: 768px) {
   .m-3.btn.btn-secondary {
     width: 100%; }

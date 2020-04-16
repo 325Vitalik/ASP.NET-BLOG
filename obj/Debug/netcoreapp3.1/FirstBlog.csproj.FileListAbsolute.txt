@@ -164,3 +164,10 @@ E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.MvcApplicationPartsAssemblyIn
 E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.Properties.Resources.resources
 E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.csproj.GenerateResource.cache
 E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.csprojAssemblyReference.cache
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
