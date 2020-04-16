@@ -38,7 +38,6 @@ E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.csproj.CoreCompileInputs.cach
 E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.genruntimeconfig.cache
 E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\package-lock.json
 E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\package.json
-E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.csprojAssemblyReference.cache
 E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\FirstBlog.exe
 E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
 E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\EntityFramework.dll
@@ -162,3 +161,6 @@ E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.R
 E:\Bot\FirstBlog\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.MvcApplicationPartsAssemblyInfo.cs
 E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.MvcApplicationPartsAssemblyInfo.cache
+E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.Properties.Resources.resources
+E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.csproj.GenerateResource.cache
+E:\Bot\FirstBlog\obj\Debug\netcoreapp3.1\FirstBlog.csprojAssemblyReference.cache

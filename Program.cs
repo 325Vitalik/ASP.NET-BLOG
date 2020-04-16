@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FirstBlog.Data;
 using FirstBlog.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
 namespace FirstBlog
 {
@@ -31,7 +27,7 @@ namespace FirstBlog
 
                 var adminRole = new IdentityRole("Admin");
                 var userRole = new IdentityRole("user");
-                
+
                 if (!ctx.Roles.Any())
                 {
                     roleMgr.CreateAsync(adminRole).GetAwaiter().GetResult();
@@ -48,7 +44,7 @@ namespace FirstBlog
                     userMgr.AddToRoleAsync(adminUser, adminRole.Name).GetAwaiter().GetResult();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

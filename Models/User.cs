@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FirstBlog.Models
 {
@@ -14,7 +10,7 @@ namespace FirstBlog.Models
 
         public User() : base()
         {
-                
+
         }
 
         public User(string userName) : base(userName)

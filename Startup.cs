@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FirstBlog.Data;
+using FirstBlog.Data.Repository;
+using FirstBlog.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FirstBlog.Data;
-using Microsoft.EntityFrameworkCore;
-using FirstBlog.Data.Repository;
-using Microsoft.AspNetCore.Identity;
-using FirstBlog.Models;
 
 namespace FirstBlog
 {
@@ -33,7 +28,7 @@ namespace FirstBlog
                 {
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 8;
-            })
+                })
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.ConfigureApplicationCookie(options =>
@@ -43,7 +38,9 @@ namespace FirstBlog
 
             services.AddTransient<IRepository, Repository>();
 
-            services.AddMvc(options => options.EnableEndpointRouting=false);
+            services.AddControllersWithViews();
+
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,13 +49,19 @@ namespace FirstBlog
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseHsts();
+            }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             //app.UseRouting();
 
             app.UseAuthentication();
 
+
+            app.UseMvc();
             app.UseMvcWithDefaultRoute();
         }
     }

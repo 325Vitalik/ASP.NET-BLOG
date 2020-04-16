@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FirstBlog.Data.Repository;
+﻿using FirstBlog.Data.Repository;
 using FirstBlog.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstBlog.Controllers
@@ -21,15 +16,16 @@ namespace FirstBlog.Controllers
         }
 
         public IActionResult RatingUp(int? id)
-        {  
+        {
             if (id != null)
             {
                 changeVote((int)id, true);
             }
+            //return StatusCode(401);
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult RatingDown(int? id)
+        public void RatingDown(int? id)
         {
             if (id != null)
             {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FirstBlog.ViewModels
 {
@@ -14,7 +10,7 @@ namespace FirstBlog.ViewModels
 
         [Required(ErrorMessage = "Please enter Password")]
         [StringLength(255, ErrorMessage = "Password should have from 8 to 25 characters", MinimumLength = 8)]
-        [RegularExpression("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,25}$", ErrorMessage ="Password should contain at least 1 uppaercase leter, 1 lowcase letter and digits")]
+        [RegularExpression("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,25}$", ErrorMessage = "Password should contain at least 1 uppaercase leter, 1 lowcase letter and digits")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm Password")]

@@ -1,8 +1,5 @@
 ﻿using FirstBlog.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FirstBlog.Data.Repository
@@ -17,7 +14,7 @@ namespace FirstBlog.Data.Repository
         User GetUser(string userName);
         string GetUserId(string userName);
         bool? GetVote(string userNmae, int postId);
-        List<PostLikeDislike> GetAllVotesOfPost(int postId);
+        IList<PostLikeDislike> GetAllVotesOfPost(int postId);
         void AddVote(PostLikeDislike pld);
         void RemoveVote(string userName, int postId);
 

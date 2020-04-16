@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FirstBlog.Data.Repository;
 using FirstBlog.Models;
+using FirstBlog.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using FirstBlog.ViewModels;
-using FirstBlog.Data.Repository;
+using System.Threading.Tasks;
 
 namespace FirstBlog.Controllers
 {

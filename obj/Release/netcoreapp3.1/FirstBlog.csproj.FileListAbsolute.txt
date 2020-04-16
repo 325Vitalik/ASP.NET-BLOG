@@ -133,7 +133,6 @@ E:\Bot\FirstBlog\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System
 E:\Bot\FirstBlog\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Bot\FirstBlog\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Bot\FirstBlog\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.csprojAssemblyReference.cache
 E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.csproj.CoreCompileInputs.cache
 E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.MvcApplicationPartsAssemblyInfo.cs
 E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.MvcApplicationPartsAssemblyInfo.cache
@@ -162,3 +161,6 @@ E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\staticwebassets\FirstBlog.StaticWebAs
 E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.dll
 E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.pdb
 E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.genruntimeconfig.cache
+E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.csprojAssemblyReference.cache
+E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.Properties.Resources.resources
+E:\Bot\FirstBlog\obj\Release\netcoreapp3.1\FirstBlog.csproj.GenerateResource.cache
