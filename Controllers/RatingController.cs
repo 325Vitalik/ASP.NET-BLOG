@@ -25,7 +25,7 @@ namespace FirstBlog.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public void RatingDown(int? id)
+        public IActionResult RatingDown(int? id)
         {
             if (id != null)
             {
